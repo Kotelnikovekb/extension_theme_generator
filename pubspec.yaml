@@ -1,7 +1,7 @@
 name: extension_theme_generator
 description: "A new Flutter project."
 version: 0.0.1
-homepage:
+homepage: https://github.com/Kotelnikovekb/extension_theme_generator
 
 environment:
   sdk: '>=3.4.4 <4.0.0'
