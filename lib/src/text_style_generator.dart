@@ -1,13 +1,15 @@
 import 'dart:async';
 import 'package:build/build.dart';
-import 'package:extension_theme_generator/text_style_annotations.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/dart/constant/value.dart';
+import 'text_style_annotations.dart';
 
 class TextStyleGenerator extends GeneratorForAnnotation<TextStyleDefinition> {
   @override
   FutureOr<String> generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
+    print('Processing element: ${element.name}');
     if (element is! FieldElement) return '';
 
     final name = element.name;
@@ -42,5 +44,4 @@ class $className extends ThemeExtension<$className> {
   }
 }
 
-Builder textStyleBuilder(BuilderOptions options) => SharedPartBuilder(
-    [TextStyleGenerator()], 'text_style');
+

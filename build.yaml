@@ -1,16 +1,16 @@
 targets:
   $default:
     builders:
-      source_gen|combining_builder:
-        options:
-          build_extensions:
-            .dart:
-              - .g.dart
+      extension_theme_generator|text_style:
+        generate_for:
+          - lib/**/*.dart
+
+
 builders:
-  text_style_generator:
-    import: "package:extension_theme_generator/text_style_generator.dart"
+  extension_theme_generator:
+    import: "package:extension_theme_generator/builder.dart"
     builder_factories: ["textStyleBuilder"]
     build_extensions: {".dart": [".g.dart"]}
     auto_apply: dependents
-    build_to: source
+    build_to: cache
     applies_builders: ["source_gen|combining_builder"]
