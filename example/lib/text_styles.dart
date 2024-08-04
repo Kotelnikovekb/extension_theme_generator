@@ -3,18 +3,19 @@ import 'package:extension_theme_generator/extension_theme_generator.dart';
 
 part 'text_styles.g.dart';
 
+@Sigma()
 class TextStyleDefinitions {
-  @TextStyleDefinition()
-  static const TextStyle header = TextStyle(
+  @PrintAnn("Hello")
+  String message = "message";
+
+/*  static const TextStyle header = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: Colors.black,
   );
-
-  @TextStyleDefinition()
   static const TextStyle body = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.normal,
     color: Colors.black,
-  );
+  );*/
 }
