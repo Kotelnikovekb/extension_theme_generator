@@ -39,7 +39,7 @@ class ColorsGenerator extends GeneratorForAnnotation<ColorAnnotation> {
 
       if (element is! ClassElement) continue;
 
-      final classElement = element as ClassElement;
+      final classElement = element;
       final className = classElement.name;
 
       for (final field in classElement.fields) {
@@ -53,31 +53,34 @@ class ColorsGenerator extends GeneratorForAnnotation<ColorAnnotation> {
       }
     }
 
+    if(_allFields.isEmpty){
+      return '';
+    }
 
     output.writeln('class \$AppThemeColors extends ThemeExtension<\$AppThemeColors> {');
 
     // Генерация полей
-    _allFields.forEach((fieldName) {
+    for (var fieldName in _allFields) {
       output.writeln('  final Color $fieldName;');
-    });
+    }
 
     // Генерация конструктора
     output.write('\n  const \$AppThemeColors({');
-    _allFields.forEach((fieldName) {
+    for (var fieldName in _allFields) {
       output.write('required this.$fieldName, ');
-    });
+    }
     output.writeln('});\n');
 
     // Генерация метода copyWith
     output.write('  @override \$AppThemeColors copyWith({');
-    _allFields.forEach((fieldName) {
+    for (var fieldName in _allFields) {
       output.write('Color? $fieldName, ');
-    });
+    }
     output.writeln('}) {');
     output.write('    return \$AppThemeColors(');
-    _allFields.forEach((fieldName) {
+    for (var fieldName in _allFields) {
       output.write('$fieldName: $fieldName ?? this.$fieldName, ');
-    });
+    }
     output.writeln(');');
     output.writeln('  }');
 
@@ -85,9 +88,9 @@ class ColorsGenerator extends GeneratorForAnnotation<ColorAnnotation> {
     output.write('  @override \$AppThemeColors lerp(ThemeExtension<\$AppThemeColors>? other, double t) {');
     output.writeln('    if (other is! \$AppThemeColors) return this;');
     output.write('    return \$AppThemeColors(');
-    _allFields.forEach((fieldName) {
+    for (var fieldName in _allFields) {
       output.write('$fieldName: Color.lerp($fieldName, other.$fieldName, t)!, ');
-    });
+    }
     output.writeln(');');
     output.writeln('  }');
 
@@ -95,14 +98,14 @@ class ColorsGenerator extends GeneratorForAnnotation<ColorAnnotation> {
     _themeFields.forEach((className, fields) {
       final variableName = _lowercaseFirstLetter(className);
       output.write('  static const \$AppThemeColors $variableName = \$AppThemeColors(');
-      _allFields.forEach((fieldName) {
+      for (var fieldName in _allFields) {
         if (fields.containsKey(fieldName)) {
           output.write('$fieldName: $className.$fieldName, ');
         } else {
           output.write('$fieldName: Colors.red, ');
           print('Warning: $className does not contain field $fieldName');
         }
-      });
+      }
       output.writeln(');');
     });
     

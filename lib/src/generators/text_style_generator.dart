@@ -52,6 +52,9 @@ class TextStyleGenerator extends GeneratorForAnnotation<TextStyleAnnotation> {
       }
     }
 
+    if(_allFields.isEmpty){
+      return '';
+    }
 
     output.writeln('class \$AppThemeTextStyles extends ThemeExtension<\$AppThemeTextStyles> {');
 

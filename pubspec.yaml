@@ -1,8 +1,7 @@
 name: extension_theme_generator
-description: "A new Flutter project."
-version: 0.0.1
+description: "Code generator for working with extensions in ThemeData"
+version: 1.0.0
 homepage: https://github.com/Kotelnikovekb/extension_theme_generator
-author: Yury Kotelnikoff <y@kotelnikoff.expert>
 
 environment:
   sdk: '>=3.4.4 <4.0.0'
