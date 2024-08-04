@@ -2,18 +2,22 @@ targets:
   $default:
     builders:
       extension_theme_generator|text_style:
-        options:
-          generate_for:
-            include:
-              - lib/**/*.dart
+        enabled: true
+      extension_theme_generator|colors:
         enabled: true
 
 builders:
   text_style:
-    target: ":"
     import: "package:extension_theme_generator/builder.dart"
     builder_factories: ["textStyleBuilder"]
-    build_extensions: {".dart": [".extension_theme_generator.g.part"]}
+    build_extensions: {".dart": [".extension_text_style_generator.g.part"]}
     auto_apply: dependents
-    build_to: source
+    build_to: cache
+    applies_builders: ["source_gen|combining_builder"]
+  colors:
+    import: "package:extension_theme_generator/builder.dart"
+    builder_factories: ["colorsBuilder"]
+    build_extensions: {".dart": [".extension_colors_generator.g.part"]}
+    auto_apply: dependents
+    build_to: cache
     applies_builders: ["source_gen|combining_builder"]

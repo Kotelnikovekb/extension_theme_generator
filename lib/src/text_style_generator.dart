@@ -4,8 +4,8 @@ import 'package:extension_theme_generator/src/visitor.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:analyzer/dart/element/element.dart';
 import '../extension_theme_generator.dart';
-import 'text_style_annotations.dart';
 
+/*
 class TextStyleGenerator extends GeneratorForAnnotation<ColorsClass> {
   @override
   FutureOr<String> generateForAnnotatedElement(
@@ -33,3 +33,4 @@ class TextStyleGenerator extends GeneratorForAnnotation<ColorsClass> {
     }
   }
 }
+*/

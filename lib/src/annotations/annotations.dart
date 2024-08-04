@@ -1,13 +1,2 @@
-
-class ColorItem{
-  final String themeName;
-  final String colorName;
-
-  const ColorItem(this.themeName,this.colorName);
-}
-
-class ColorsClass {
-  const ColorsClass();
-}
-
-ColorsClass colorsAnnotation = ColorsClass();
+export 'text_style_annotation.dart';
+export 'color_annotation.dart';

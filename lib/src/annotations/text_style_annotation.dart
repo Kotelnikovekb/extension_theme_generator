@@ -1,3 +1,3 @@
-class TextStyleAnnotation {
+class TextStyleAnnotation{
   const TextStyleAnnotation();
 }
