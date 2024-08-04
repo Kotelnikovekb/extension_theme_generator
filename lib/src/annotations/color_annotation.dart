@@ -1,0 +1,4 @@
+class ColorAnnotation{
+  const ColorAnnotation();
+
+}

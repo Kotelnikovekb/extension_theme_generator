@@ -6,7 +6,7 @@ import 'package:analyzer/dart/element/element.dart';
 import '../extension_theme_generator.dart';
 import 'text_style_annotations.dart';
 
-class TextStyleGenerator extends GeneratorForAnnotation<Sigma> {
+class TextStyleGenerator extends GeneratorForAnnotation<ColorsClass> {
   @override
   FutureOr<String> generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {

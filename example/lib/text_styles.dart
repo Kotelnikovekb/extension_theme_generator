@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:extension_theme_generator/extension_theme_generator.dart';
 
-part 'text_styles.g.dart';
+//part 'text_styles.g.dart';
 
-@Sigma()
 class TextStyleDefinitions {
-  @PrintAnn("Hello")
-  String message = "message";
+
+
 
 /*  static const TextStyle header = TextStyle(
     fontSize: 24,
