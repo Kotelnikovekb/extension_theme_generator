@@ -9,11 +9,13 @@ part of 'theme.dart';
 class $AppThemeColors extends ThemeExtension<$AppThemeColors> {
   final Color primary;
   final Color secondary;
+  final Color background;
   final Color textColor;
 
   const $AppThemeColors({
     required this.primary,
     required this.secondary,
+    required this.background,
     required this.textColor,
   });
 
@@ -21,11 +23,13 @@ class $AppThemeColors extends ThemeExtension<$AppThemeColors> {
   $AppThemeColors copyWith({
     Color? primary,
     Color? secondary,
+    Color? background,
     Color? textColor,
   }) {
     return $AppThemeColors(
       primary: primary ?? this.primary,
       secondary: secondary ?? this.secondary,
+      background: background ?? this.background,
       textColor: textColor ?? this.textColor,
     );
   }
@@ -36,6 +40,7 @@ class $AppThemeColors extends ThemeExtension<$AppThemeColors> {
     return $AppThemeColors(
       primary: Color.lerp(primary, other.primary, t)!,
       secondary: Color.lerp(secondary, other.secondary, t)!,
+      background: Color.lerp(background, other.background, t)!,
       textColor: Color.lerp(textColor, other.textColor, t)!,
     );
   }
@@ -43,12 +48,20 @@ class $AppThemeColors extends ThemeExtension<$AppThemeColors> {
   static const $AppThemeColors lightColors = $AppThemeColors(
     primary: LightColors.primary,
     secondary: LightColors.secondary,
+    background: LightColors.background,
     textColor: Colors.red,
   );
   static const $AppThemeColors darkColors = $AppThemeColors(
     primary: DarkColors.primary,
     secondary: DarkColors.secondary,
+    background: DarkColors.background,
     textColor: DarkColors.textColor,
+  );
+  static const $AppThemeColors blueColors = $AppThemeColors(
+    primary: BlueColors.primary,
+    secondary: BlueColors.secondary,
+    background: BlueColors.background,
+    textColor: BlueColors.textColor,
   );
 }
 
@@ -93,5 +106,9 @@ class $AppThemeTextStyles extends ThemeExtension<$AppThemeTextStyles> {
   static const $AppThemeTextStyles lightTextStyle = $AppThemeTextStyles(
     header: LightTextStyle.header,
     body: LightTextStyle.body,
+  );
+  static const $AppThemeTextStyles blueTextStyle = $AppThemeTextStyles(
+    header: BlueTextStyle.header,
+    body: BlueTextStyle.body,
   );
 }
