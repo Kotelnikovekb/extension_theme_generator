@@ -6,7 +6,7 @@ import 'theme.dart';
 
 ThemeData createDarkTheme(){
   return ThemeData(
-    extensions: const <ThemeExtension<dynamic>>[
+    extensions: <ThemeExtension<dynamic>>[
       $AppThemeColors.darkColors,
       $AppThemeTextStyles.darkTextStyle,
     ],

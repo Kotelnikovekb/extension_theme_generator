@@ -8,7 +8,8 @@ import 'package:source_gen/source_gen.dart';
 
 class TextStyleGenerator extends GeneratorForAnnotation<TextStyleAnnotation> {
   final Map<String, Map<String, String>> _themeFields = {};
-
+  final Map<String, bool> _useFinalMap = {};
+  final Map<String, bool> _enableStyleComparisonMap = {};
   final Set<String> _allFields = {};
 
   @override
@@ -16,6 +17,7 @@ class TextStyleGenerator extends GeneratorForAnnotation<TextStyleAnnotation> {
       Element element, ConstantReader annotation, BuildStep buildStep) {
     final classElement = element as ClassElement;
     final className = classElement.name;
+
 
     for (final field in classElement.fields) {
       if (field.isStatic) {
@@ -25,14 +27,17 @@ class TextStyleGenerator extends GeneratorForAnnotation<TextStyleAnnotation> {
       }
     }
 
-
     return '';
   }
+
   @override
   Future<String> generate(LibraryReader library, BuildStep buildStep) async {
     _themeFields.clear();
-    //_allFields.clear();
+    _allFields.clear();
+    _useFinalMap.clear();
+
     final output = StringBuffer();
+
     for (final annotatedElement in library.annotatedWith(const TypeChecker.fromRuntime(TextStyleAnnotation))) {
       final element = annotatedElement.element;
 
@@ -40,6 +45,9 @@ class TextStyleGenerator extends GeneratorForAnnotation<TextStyleAnnotation> {
 
       final classElement = element as ClassElement;
       final className = classElement.name;
+      _useFinalMap[className] = annotatedElement.annotation.peek('useFinal')?.boolValue ?? false;
+      _enableStyleComparisonMap[className] = annotatedElement.annotation.peek('enableStyleComparison')?.boolValue ?? false;
+
 
       for (final field in classElement.fields) {
         if (field.isStatic) {
@@ -50,28 +58,26 @@ class TextStyleGenerator extends GeneratorForAnnotation<TextStyleAnnotation> {
           _allFields.add(field.name);
         }
       }
+
+
     }
 
-    if(_allFields.isEmpty){
+    if (_allFields.isEmpty) {
       return '';
     }
 
     output.writeln('class \$AppThemeTextStyles extends ThemeExtension<\$AppThemeTextStyles> {');
 
-    // Генерация полей
     _allFields.forEach((fieldName) {
       output.writeln('  final TextStyle $fieldName;');
     });
 
-
-    // Генерация конструктора
     output.write('\n  const \$AppThemeTextStyles({');
     _allFields.forEach((fieldName) {
       output.write('required this.$fieldName, ');
     });
     output.writeln('});\n');
 
-// Генерация метода copyWith
     output.write('  @override \$AppThemeTextStyles copyWith({');
     _allFields.forEach((fieldName) {
       output.write('TextStyle? $fieldName, ');
@@ -84,7 +90,6 @@ class TextStyleGenerator extends GeneratorForAnnotation<TextStyleAnnotation> {
     output.writeln(');');
     output.writeln('  }');
 
-    // Генерация метода lerp
     output.write('  @override \$AppThemeTextStyles lerp(ThemeExtension<\$AppThemeTextStyles>? other, double t) {');
     output.writeln('    if (other is! \$AppThemeTextStyles) return this;');
     output.write('    return \$AppThemeTextStyles(');
@@ -94,10 +99,11 @@ class TextStyleGenerator extends GeneratorForAnnotation<TextStyleAnnotation> {
     output.writeln(');');
     output.writeln('  }');
 
-    // Генерация статических свойств для каждого аннотированного класса
     _themeFields.forEach((className, fields) {
       final variableName = _lowercaseFirstLetter(className);
-      output.write('  static const \$AppThemeTextStyles $variableName = \$AppThemeTextStyles(');
+      final staticType = fields.values.any((_) => _useFinalMap[className] ?? false) ? 'final' : 'const';
+
+      output.write('  static $staticType \$AppThemeTextStyles $variableName = \$AppThemeTextStyles(');
       _allFields.forEach((fieldName) {
         if (fields.containsKey(fieldName)) {
           output.write('$fieldName: $className.$fieldName, ');
@@ -107,15 +113,46 @@ class TextStyleGenerator extends GeneratorForAnnotation<TextStyleAnnotation> {
         }
       });
       output.writeln(');');
-    });
-    /// Конец файла
-    output.writeln('}');
 
+      final enableStyleComparison = _enableStyleComparisonMap[className] ?? false;
+
+      if (enableStyleComparison) {
+        _compareStyles();
+      }
+    });
+
+    output.writeln('}');
 
 
     return output.toString();
   }
+
+  void _compareStyles() {
+    final duplicates = <String, List<String>>{};
+
+    _themeFields.forEach((className, fields) {
+      fields.forEach((fieldName, fieldType) {
+        final duplicateKeys = _themeFields.keys.where((otherClassName) {
+          if (className == otherClassName) return false;
+          return _themeFields[otherClassName]?[fieldName] == fieldType;
+        }).toList();
+
+        if (duplicateKeys.isNotEmpty) {
+          duplicates.putIfAbsent(fieldName, () => []).addAll(duplicateKeys);
+        }
+      });
+    });
+
+    if (duplicates.isNotEmpty) {
+      print('Duplicate styles found:');
+      duplicates.forEach((fieldName, classes) {
+        print('$fieldName is identical in: ${classes.join(', ')}');
+      });
+    }
+  }
+
   String _lowercaseFirstLetter(String input) {
     return input.isNotEmpty ? input[0].toLowerCase() + input.substring(1) : '';
   }
+
 }

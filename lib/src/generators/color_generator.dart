@@ -9,7 +9,8 @@ import '../../extension_theme_generator.dart';
 
 class ColorsGenerator extends GeneratorForAnnotation<ColorAnnotation> {
   final Map<String, Map<String, String>> _themeFields = {};
-
+  final Map<String, bool> _useFinalMap = {};
+  final Map<String, bool> _enableStyleComparisonMap = {};
   final Set<String> _allFields = {};
 
   @override
