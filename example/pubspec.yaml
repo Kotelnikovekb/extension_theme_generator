@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.6
   extension_theme_generator:
     path: ../
+  freezed_annotation: ^2.0.0
+  path_provider: ^2.1.4
 
 
 dev_dependencies:
@@ -44,6 +46,8 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^3.0.0
   build_runner: ^2.4.11
+  freezed: ^2.5.7
+  drift_dev: ^2.20.0
 
 
 

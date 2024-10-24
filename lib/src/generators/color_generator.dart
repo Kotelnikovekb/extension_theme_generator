@@ -34,6 +34,7 @@ class ColorsGenerator extends GeneratorForAnnotation<ColorAnnotation> {
   @override
   Future<String> generate(LibraryReader library, BuildStep buildStep) async {
     _themeFields.clear();
+    _allFields.clear();
     final output = StringBuffer();
     for (final annotatedElement in library.annotatedWith(const TypeChecker.fromRuntime(ColorAnnotation))) {
       final element = annotatedElement.element;
