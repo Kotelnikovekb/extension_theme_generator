@@ -17,6 +17,8 @@ class TextStyleAnnotation {
   /// In the generated code, fields `header` and `body` will be marked as `final`.
   final bool useFinal;
 
+  final bool useConst;
+
   /// Indicates whether style comparison should be enabled for the generated code.
   ///
   /// If `true`, the generator will include logic to compare styles for potential
@@ -40,5 +42,6 @@ class TextStyleAnnotation {
   const TextStyleAnnotation({
     this.useFinal = false,
     this.enableStyleComparison = false,
+    this.useConst = true,
   });
 }

@@ -2,12 +2,12 @@ part of 'theme.dart';
 
 @TextStyleAnnotation(useFinal: true,enableStyleComparison: true)
 class DarkTextStyle {
-  static final TextStyle header = TextStyle(
-    fontSize: 24,
+  static TextStyle header = TextStyle(
+    fontSize: 24.sp,
     fontWeight: FontWeight.bold,
     color: Colors.white,
   );
-  static final TextStyle header2 = TextStyle(
+  static TextStyle header2 = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: Colors.white,

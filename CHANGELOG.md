@@ -1,3 +1,11 @@
+## 1.3.0
+### Changed
+- Migrated package to support:
+    - **build >=3.0.0 <5.0.0**
+    - **source_gen >=3.0.0 <5.0.0**
+    - **analyzer >=7.5.9 <9.0.0**
+- Refactored generators (`ColorsGenerator`, `TextStyleGenerator`) to be compatible with the new analyzer API.
+
 ## 1.2.3
 ### Fixed
 - Fixed issue with adding colors in code generation that was not related to the package. [#1](https://github.com/Kotelnikovekb/extension_theme_generator/issues/1)
