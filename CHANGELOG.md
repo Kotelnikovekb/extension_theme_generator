@@ -1,3 +1,14 @@
+## 1.3.1
+### Fixed
+- Fixed theme generation for palette-based colors (`MaterialColor`, `MaterialAccentColor`, `ColorSwatch<...>`): generator now uses the base tone (`[500]!`) instead of emitting palette objects into `ThemeExtension`, which previously broke interpolation.
+
+### Changed
+- `ThemeExtension` generated color fields now use `Color` instead of `MaterialColor` to ensure `lerp` works correctly during theme transitions (e.g., light ↔ dark).
+- Generated theme instances were changed from `static const` to `static final` because palette access like `mySwatch[500]!` is not a const expression.
+
+### Added
+- Palette type detection in generator: `MaterialColor`, `MaterialAccentColor`, and `ColorSwatch<...>` are handled automatically.
+
 ## 1.3.0
 ### Changed
 - Migrated package to support:

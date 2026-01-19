@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 ThemeData createLightTheme(){
   return ThemeData(
-    extensions: const <ThemeExtension<dynamic>>[
+    extensions: <ThemeExtension<dynamic>>[
       $AppThemeColors.lightColors,
       $AppThemeTextStyles.lightTextStyle,
     ],

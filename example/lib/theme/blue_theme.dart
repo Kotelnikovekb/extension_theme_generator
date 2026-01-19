@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 ThemeData createBlueTheme(){
   return ThemeData(
-    extensions: const <ThemeExtension<dynamic>>[
+    extensions: <ThemeExtension<dynamic>>[
       $AppThemeColors.blueColors,
       $AppThemeTextStyles.blueTextStyle,
     ],

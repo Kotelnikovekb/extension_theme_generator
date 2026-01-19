@@ -86,14 +86,33 @@ class ColorsGenerator extends GeneratorForAnnotation<ColorAnnotation> {
     output.writeln(');');
     output.writeln('  }');
 
+    const _paletteTypes = <String>{
+      'MaterialColor',
+      'MaterialAccentColor',
+      'ColorSwatch',
+      'ColorSwatch<Color>',
+      'ColorSwatch<int>',
+    };
+
+    bool _isPaletteType(String type) {
+      if (_paletteTypes.contains(type)) return true;
+      if (type.startsWith('ColorSwatch<')) return true;
+      return false;
+    }
+
     _themeFields.forEach((className, fields) {
       final variableName = _lowercaseFirstLetter(className);
-      output.write('  static const \$AppThemeColors $variableName = \$AppThemeColors(');
+      output.write('  static final \$AppThemeColors $variableName = \$AppThemeColors(');
       for (final fieldName in _allFields) {
         if (fields.containsKey(fieldName)) {
-          output.write('$fieldName: $className.$fieldName, ');
+          final fieldType = fields[fieldName]!;
+          if (_isPaletteType(fieldType)) {
+            output.write('$fieldName: $className.$fieldName[500]!, ');
+          } else {
+            output.write('$fieldName: $className.$fieldName, ');
+          }
         } else {
-          output.write('$fieldName: Colors.red, ');
+          output.write('$fieldName: const Color(0xFFFF0000), ');
           print('Warning: $className does not contain field $fieldName');
         }
       }
