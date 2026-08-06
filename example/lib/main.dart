@@ -4,7 +4,6 @@ import 'package:example/theme/dark_theme.dart';
 import 'package:example/theme/light_theme.dart';
 import 'package:flutter/material.dart';
 
-import 'theme/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,14 +21,13 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    themeData=createLightTheme();
+    themeData = createLightTheme();
     super.initState();
-
   }
 
-  void selectTheme(ThemeData data){
+  void selectTheme(ThemeData data) {
     setState(() {
-      themeData=data;
+      themeData = data;
     });
   }
 
@@ -38,7 +36,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       theme: themeData,
       home: HomePage(
-        selectTheme: (data)=>selectTheme(data),
+        selectTheme: (data) => selectTheme(data),
       ),
     );
   }
@@ -55,7 +53,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: Text('Demo Theme App'),
       ),
@@ -69,23 +67,20 @@ class _HomePageState extends State<HomePage> {
               style: context.appText.header,
             ),
             ElevatedButton(
-                onPressed: (){
+                onPressed: () {
                   widget.selectTheme(createLightTheme());
                 },
-                child: Text('Light Theme')
-            ),
+                child: Text('Light Theme')),
             ElevatedButton(
-                onPressed: (){
+                onPressed: () {
                   widget.selectTheme(createDarkTheme());
                 },
-                child: Text('Dark Theme')
-            ),
+                child: Text('Dark Theme')),
             ElevatedButton(
-                onPressed: (){
+                onPressed: () {
                   widget.selectTheme(createBlueTheme());
                 },
-                child: Text('Blue Theme')
-            ),
+                child: Text('Blue Theme')),
           ],
         ),
       ),

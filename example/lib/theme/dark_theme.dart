@@ -1,10 +1,8 @@
-
 import 'package:flutter/material.dart';
 
 import 'theme.dart';
 
-
-ThemeData createDarkTheme(){
+ThemeData createDarkTheme() {
   return ThemeData(
     extensions: <ThemeExtension<dynamic>>[
       $AppThemeColors.darkColors,

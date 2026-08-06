@@ -1,21 +1,20 @@
 name: extension_theme_generator
 description: "Code generator for working with extensions in ThemeData"
-version: 1.3.1
+version: 1.3.2
 homepage: https://github.com/Kotelnikovekb/extension_theme_generator
+repository: https://github.com/Kotelnikovekb/extension_theme_generator
+issue_tracker: https://github.com/Kotelnikovekb/extension_theme_generator/issues
 
 environment:
-  sdk: ">=3.8.0 <4.0.0"
+  sdk: ">=3.9.0 <4.0.0"
+
 dependencies:
   flutter:
     sdk: flutter
 
-  build: ">=3.0.0 <5.0.0"
-  source_gen: ">=3.0.0 <5.0.0"
-  build_runner: ^2.4.11
-  analyzer: ">=7.5.9 <9.0.0"
-
+  analyzer: ">=10.0.0 <15.0.0"
+  build: ">=3.0.2 <5.0.0"
+  source_gen: ">=4.2.4 <5.0.0"
 
 dev_dependencies:
-  flutter_lints: ^3.0.0
-
-
+  flutter_lints: ^6.0.0

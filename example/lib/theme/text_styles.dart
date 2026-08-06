@@ -1,6 +1,6 @@
 part of 'theme.dart';
 
-@TextStyleAnnotation(useFinal: true,enableStyleComparison: true)
+@TextStyleAnnotation(useFinal: true, enableStyleComparison: true)
 class DarkTextStyle {
   static TextStyle header = TextStyle(
     fontSize: 24.sp,
@@ -19,7 +19,6 @@ class DarkTextStyle {
   );
 }
 
-
 @TextStyleAnnotation()
 class LightTextStyle {
   static const TextStyle header = TextStyle(
@@ -33,6 +32,7 @@ class LightTextStyle {
     color: Colors.black,
   );
 }
+
 @TextStyleAnnotation()
 class BlueTextStyle {
   static const TextStyle header = TextStyle(

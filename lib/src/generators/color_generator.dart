@@ -10,14 +10,12 @@ class ColorsGenerator extends GeneratorForAnnotation<ColorAnnotation> {
   final Map<String, Map<String, String>> _themeFields = {};
   final Set<String> _allFields = {};
 
-
   @override
   Future<String> generate(LibraryReader library, BuildStep buildStep) async {
     _themeFields.clear();
     _allFields.clear();
 
     final output = StringBuffer();
-
 
     final colorChecker = TypeChecker.typeNamed(
       ColorAnnotation,
@@ -31,7 +29,7 @@ class ColorsGenerator extends GeneratorForAnnotation<ColorAnnotation> {
       final classElement = element;
       final className = classElement.name;
 
-      if(className==null){
+      if (className == null) {
         print('className null');
         continue;
       }
@@ -39,7 +37,7 @@ class ColorsGenerator extends GeneratorForAnnotation<ColorAnnotation> {
       for (final field in classElement.fields) {
         if (!field.isStatic) continue;
 
-        final fieldType = field.type.getDisplayString(withNullability: false);
+        final fieldType = field.type.getDisplayString();
         _themeFields.putIfAbsent(className, () => {});
         _themeFields[className]![field.name!] = fieldType;
 
@@ -53,7 +51,9 @@ class ColorsGenerator extends GeneratorForAnnotation<ColorAnnotation> {
       return '';
     }
 
-    output.writeln('class \$AppThemeColors extends ThemeExtension<\$AppThemeColors> {');
+    output.writeln(
+      'class \$AppThemeColors extends ThemeExtension<\$AppThemeColors> {',
+    );
 
     for (final fieldName in _allFields) {
       output.writeln('  final Color $fieldName;');
@@ -77,11 +77,15 @@ class ColorsGenerator extends GeneratorForAnnotation<ColorAnnotation> {
     output.writeln(');');
     output.writeln('  }');
 
-    output.write('  @override \$AppThemeColors lerp(ThemeExtension<\$AppThemeColors>? other, double t) {');
+    output.write(
+      '  @override \$AppThemeColors lerp(ThemeExtension<\$AppThemeColors>? other, double t) {',
+    );
     output.writeln('    if (other is! \$AppThemeColors) return this;');
     output.write('    return \$AppThemeColors(');
     for (final fieldName in _allFields) {
-      output.write('$fieldName: Color.lerp($fieldName, other.$fieldName, t)!, ');
+      output.write(
+        '$fieldName: Color.lerp($fieldName, other.$fieldName, t)!, ',
+      );
     }
     output.writeln(');');
     output.writeln('  }');
@@ -102,7 +106,9 @@ class ColorsGenerator extends GeneratorForAnnotation<ColorAnnotation> {
 
     _themeFields.forEach((className, fields) {
       final variableName = _lowercaseFirstLetter(className);
-      output.write('  static final \$AppThemeColors $variableName = \$AppThemeColors(');
+      output.write(
+        '  static final \$AppThemeColors $variableName = \$AppThemeColors(',
+      );
       for (final fieldName in _allFields) {
         if (fields.containsKey(fieldName)) {
           final fieldType = fields[fieldName]!;

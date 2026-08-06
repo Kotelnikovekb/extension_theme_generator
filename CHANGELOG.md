@@ -1,3 +1,9 @@
+# 1.3.2
+### Changed
+- Added support for analyzer 10–14.
+- Updated source_gen compatibility.
+- Moved build_runner to dev_dependencies.
+
 ## 1.3.1
 ### Fixed
 - Fixed theme generation for palette-based colors (`MaterialColor`, `MaterialAccentColor`, `ColorSwatch<...>`): generator now uses the base tone (`[500]!`) instead of emitting palette objects into `ThemeExtension`, which previously broke interpolation.

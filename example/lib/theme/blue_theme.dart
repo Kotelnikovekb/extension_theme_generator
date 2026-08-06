@@ -1,8 +1,7 @@
-
 import 'package:example/theme/theme.dart';
 import 'package:flutter/material.dart';
 
-ThemeData createBlueTheme(){
+ThemeData createBlueTheme() {
   return ThemeData(
     extensions: <ThemeExtension<dynamic>>[
       $AppThemeColors.blueColors,

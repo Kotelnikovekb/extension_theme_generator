@@ -1,7 +1,5 @@
-
 import 'package:example/theme/theme.dart';
 import 'package:flutter/material.dart';
-
 
 extension BuildContextExtention on BuildContext {
   $AppThemeTextStyles get appText =>

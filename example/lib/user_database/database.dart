@@ -4,17 +4,14 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:drift/drift.dart';
 
-
 part 'database.g.dart';
 
 @DriftDatabase(tables: [DebtEntity])
-class MainDatabase extends _$MainDatabase{
-  MainDatabase(): super(_openConnection());
+class MainDatabase extends _$MainDatabase {
+  MainDatabase() : super(_openConnection());
 
   @override
   int get schemaVersion => 1;
-
-
 }
 
 class DebtEntity extends Table {

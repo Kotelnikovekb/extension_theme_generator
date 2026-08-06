@@ -1,4 +1,3 @@
-class ColorAnnotation{
+class ColorAnnotation {
   const ColorAnnotation();
-
 }

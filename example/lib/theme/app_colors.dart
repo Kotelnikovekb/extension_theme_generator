@@ -6,7 +6,7 @@ class LightColors {
   static const Color secondary = Color(0xFFEEEEEE);
   static const Color background = Color(0xFFEDF6F6);
 
-  static const MaterialColor secondary2 =  MaterialColor(
+  static const MaterialColor secondary2 = MaterialColor(
     0xFFA5E5D8,
     <int, Color>{
       100: Color(0xFFDFF9F1),
@@ -25,7 +25,6 @@ class DarkColors {
   static const Color textColor = Color(0xFF111111);
 
   static const Color background = Color(0xFF015D60);
-
 }
 
 @ColorAnnotation()
@@ -34,5 +33,4 @@ class BlueColors {
   static const Color secondary = Color(0xFF111111);
   static const Color textColor = Color(0xFF111111);
   static const Color background = Color(0xFFC4EDF3);
-
 }
